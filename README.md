@@ -1,3 +1,1 @@
 # Maison connectée
-
-Bonjour
