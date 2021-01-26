@@ -13,10 +13,21 @@
     var socket = io.connect('http://' + document.domain + ':' + location.port);
 
     function publier(){
-      var topic = 'temperature';
-      var message = '25';
-      var data = '{"topic": "' + topic + '", "message": "' + message + '"}';
-      socket.emit('publish', data=data);
+      switch ($('#subscribe_topic').val()){
+          case "temperature":
+          var topic = 'temperature';
+          var message = '25';
+          var data = '{"topic": "' + topic + '", "message": "' + message + '"}';
+          socket.emit('publish', data=data);
+          break;
+
+          case "humidite" : 
+          var topic = 'humidite';
+          var message = '20';
+          var data = '{"topic": "' + topic + '", "message": "' + message + '"}';
+          socket.emit('publish', data=data);
+          break;
+      }
     }
 
     $('#subscribe').click(function(event) {      //Abonne à un topic
@@ -58,11 +69,15 @@
           <div class="col-xs-12">
             <div class="row">
               <div class="form-horizontal">
-                <div class="form-group">
-                  <label class="control-label col-xs-4">Topic:</label>
+                <div class="form-group">                             
+                  <label class="control-label col-xs-4">Topic: </label>
                   <div class="col-xs-8">
-                    <input id="subscribe_topic" class="form-control">
-                  </div>
+                    <select id="subscribe_topic" class="form-control">
+                      <option value= 'temperature'>Temperature</option>
+                      <option value= 'humidite'>Humidite</option>
+                      <option value= 0 >Luminosité</option>
+                    </select>
+                  </div> 
                 </div>
                 <div class="form-group">
                   <div class="col-xs-8 col-xs-offset-4">
