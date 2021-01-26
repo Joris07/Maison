@@ -1,0 +1,9 @@
+               <label class="control-label col-xs-4">Qos: </label>           //Liste déroulante 
+                  <div class="col-xs-8">
+                    <select id="subscribe_qos" class="form-control">
+                      <option value=0>0</option>
+                      <option value=1>1</option>
+                      <option value=2>2</option>
+                    </select>
+                  </div> 
+                </div>
