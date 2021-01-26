@@ -28,8 +28,6 @@
       $('#subscribe').hide();
       $('#unsubscribe').show();
       $('#subscribe_topic').prop('readonly', true);
-      if(topic == "temperature") socket.emit('publish', data = 20);
-      else if (topic == "humidite") socket.emit('publish', data = 50);
     });
 
     $('#unsubscribe').click(function(event) {       //Désabonne du topic 
