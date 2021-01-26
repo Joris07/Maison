@@ -12,13 +12,13 @@
   $(document).ready(function() {
     var socket = io.connect('http://' + document.domain + ':' + location.port);
 
-    /*$('#publish').click(function(event) {        //Emet le message
-      var topic = $('#topic').val();
-      var message = $('#message').val();
-      var qos = $('#qos').val();
+    function publier(){
+      var topic = 'temperature';
+      var message = '25';
+      var qos = '0';
       var data = '{"topic": "' + topic + '", "message": "' + message + '", "qos": ' + qos + '}';
       socket.emit('publish', data=data);
-    }); */
+    }
 
     $('#subscribe').click(function(event) {      //Abonne à un topic
       var topic = $('#subscribe_topic').val();
@@ -28,6 +28,7 @@
       $('#subscribe').hide();
       $('#unsubscribe').show();
       $('#subscribe_topic').prop('readonly', true);
+      publier();
     });
 
     $('#unsubscribe').click(function(event) {       //Désabonne du topic 
@@ -74,6 +75,11 @@
                       <option value=2>2</option>
                     </select>
                   </div> 
+                </div>
+                <div class="form-group">
+                  <div class="col-xs-8 col-xs-offset-4">
+                    <button id="publish" class="btn btn-primary">Publish</button>
+                </div>
                 </div>
                 <div class="form-group">
                   <div class="col-xs-8 col-xs-offset-4">
