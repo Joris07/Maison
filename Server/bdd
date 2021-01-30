@@ -1,9 +1,0 @@
-from pymongo import MongoClient           
-
-client = MongoClient("mongodb://127.0.0.1:27017)
-db = myclient["db"]
-collection = db.temperature
-doc = { "Temperature":"19" }
-
-collection.insert_one(doc)        //Insert in the Database
-client.close()
