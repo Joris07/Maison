@@ -9,7 +9,7 @@ lines = read.readlines()
 read.close()
 last_line = lines[len(lines)-1].strip() '''Enregistre la derniére ligne en supprimant le saut de ligne'''
 
-doc = { "Temperature":"19" }
+doc = { "Temperature":last_line }
 
 collection.insert_one(doc)        '''Insert in the Database'''
 client.close()
