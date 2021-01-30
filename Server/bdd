@@ -1,9 +1,9 @@
-import pymongo
 from pymongo import MongoClient
 
-myclient = MongoClient(host="0.0.0.0",port=27017)
-mydb = myclient["db"]
-mycol = mydb["temperature"]
-mydict = { "Temperature":"19" }
+client = MongoClient("mongodb://127.0.0.1:27017)
+db = myclient["db"]
+collection = db.temperature
+doc = { "Temperature":"19" }
 
-mycol.insert_one(mydict)
+collection.insert_one(doc)
+client.close()
