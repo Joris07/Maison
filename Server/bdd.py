@@ -1,8 +1,8 @@
-from pymongo import MongoClient           
+from pymongo import MongoClient
 
-client = MongoClient("mongodb://127.0.0.1:27017")
-db = myclient["db"]
-collection = db.temperature
+client = MongoClient('mongodb://127.0.0.1:27017')
+db = client["db"]
+col = db.temperature
 
 read = open("fichier.txt", "r")
 lines = read.readlines()
@@ -11,5 +11,5 @@ last_line = lines[len(lines)-1].strip()
 
 doc = { "Temperature":last_line }
 
-collection.insert_one(doc)
+col.insert(doc)
 client.close()
