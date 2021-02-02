@@ -1,15 +1,15 @@
 from pymongo import MongoClient           
 
-client = MongoClient("mongodb://127.0.0.1:27017)
+client = MongoClient("mongodb://127.0.0.1:27017")
 db = myclient["db"]
 collection = db.temperature
 
-read = open("fichier.txt", "r")         '''Lire le fichier.txt'''
+read = open("fichier.txt", "r")
 lines = read.readlines()
 read.close()
-last_line = lines[len(lines)-1].strip() '''Enregistre la derniére ligne en supprimant le saut de ligne'''
+last_line = lines[len(lines)-1].strip()
 
 doc = { "Temperature":last_line }
 
-collection.insert_one(doc)        '''Insert in the Database'''
+collection.insert_one(doc)
 client.close()
