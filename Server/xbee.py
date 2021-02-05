@@ -9,7 +9,7 @@ while 1:
     temp=tab[0]
     humid=tab[1]
     f = open("fichier.txt", "a")
-    f.write(final + "\n")
+    f.write(temp + "\n" + humid + "\n")
     f.close()
 
     print(final)
