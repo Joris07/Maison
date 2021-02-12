@@ -24,7 +24,8 @@ def insert_bdd(nbr, chaine):
     tab=chaine.split(";")
     memo = read_file().split(";")
     if(tab[0]!=memo[0]):
-        col = db.tab[0][1:]
+        if(tab[0][1:]=="AHT20"):
+            col = db.AHT20
         monDico = { }
         for i in range(1, nbr+1):
             if(tab[i].find("t")!=-1):
@@ -41,7 +42,7 @@ def read_file():
     last_line= lines_temp[len(lines_temp)-1].strip()
     return last_line
 
-
 recu = receiver()
 write_file(recu)
 insert_bdd(count_dot(recu), recu)
+
