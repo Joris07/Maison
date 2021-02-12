@@ -9,7 +9,6 @@ ser = serial.Serial('/dev/ttyUSB0', 9600)
 def receiver():
     incoming = ser.readline().strip()
     final= incoming[1:].decode()
-    print(final)
     return final
 
 def write_file(chaine):
@@ -33,7 +32,7 @@ def insert_bdd(nbr, chaine):
             elif(tab[i].find("h")!=-1):
                 monDico["Humidite"] = tab[i][1:]
         col.insert(monDico)
-        client.close()
+    client.close()
 
 def read_file():
     read_temp = open("donnees.txt", "r")
@@ -43,4 +42,6 @@ def read_file():
     return last_line
 
 
-while 1:
+recu = receiver()
+write_file(recu)
+insert_bdd(count_dot(recu), recu)
