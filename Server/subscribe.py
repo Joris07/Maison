@@ -1,5 +1,4 @@
 from pymongo import MongoClient
-import paho.mqtt.client as mqtt
 import paho.mqtt.subscribe as subscribe
 import time
 
