@@ -7,15 +7,21 @@ db = client["db"] #Pointe le nom de la base de données
 
 #Interpréte les données reçu
 def on_message_print(client, userdata, message):
+    time.sleep(5)
     tropic= message.topic #Topic reçu
     data = message.payload.decode() #Valeur du topic reçu
+    if((tropic + data)=="testtopictest message"): #Si la trame reçu est égal à 
+        tropic = "AHT20/temperature" #tropic prend valeur 
+        data = "20.52" #data prend valeur 
+    print(tropic + data)
     tab = tropic.split("/") #Création d'un tableau en séparant les données par un "/"
     monDico= { } #Création du dictionnaire
     if(tab[1].find("temperature")!=-1): #Si la case contient "temperature" alors 
         monDico[tab[1]]=data #Remplit mon tableau de la valeur ex :{'temperature':'25'}
     elif(tab[1].find("humidite")!=-1): #Si la case contient "humidite" alors 
         monDico[tab[1]]=data #Remplit mon tableau de la valeur humidite ex : {'temperature':'25','humidite':'20'}
-    insert_bdd(tab[0], monDico) #Envoi des données dans la colonne passée en paramétre
+    print(monDico)
+    insert_bdd(tab[0][1:], monDico) #Envoi des données dans la colonne passée en paramétre
 
 #Insert les données dans la BDD
 def insert_bdd(topic,dico):
