@@ -1,11 +1,13 @@
-
-   #include <Adafruit_AHTX0.h>
+    #include <Adafruit_AHTX0.h>
     #include <SoftwareSerial.h>
     SoftwareSerial xbee(2, 3);
      
     Adafruit_AHTX0 aht;
+    unsigned char count;
      
     void setup() {
+     
+      
       pinMode(13, OUTPUT);
       digitalWrite(13, HIGH);
       xbee.begin(9600); 
@@ -22,9 +24,11 @@
     void loop() {
       sensors_event_t humidity, temp;
       aht.getEvent(&humidity, &temp);// populate temp and humidity objects with fresh data
-      Serial.print("Temperature: "); Serial.print(temp.temperature); Serial.println(" degrees C");
-      Serial.print("Humidity: "); Serial.print(humidity.relative_humidity); Serial.println("% rH");
-      xbee.print(temp.temperature);xbee.println(" degrees C");
-      xbee.print(humidity.relative_humidity); xbee.println("% rH");
-      delay(1500);
+ 
+      String final = String(count) + "AHT20;t" + String(temp.temperature) + ";h" + String(humidity.relative_humidity);
+      xbee.println(final);
+      count++;
+      if (count==2) count=0; 
+      Serial.println(final);
+      delay(1000);
     }
