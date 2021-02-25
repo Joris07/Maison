@@ -1,0 +1,38 @@
+<body>
+   <label for="topic_select">Choose a topic:</label>
+
+   <select name="topic" id="topic_select">
+       <option value="">--Please choose an option--</option>
+       <option value="Temperature">Temperature</option>
+       <option value="Humidite">Humidite</option>
+       
+   </select>
+   <br>
+<form>
+   <br>
+   <input type="button" value="Subsribe">
+ </form>
+ <p>Souscrire à un topic</p>
+</body>
+
+ <script>
+   var btn = document.querySelector('input');
+   var txt = document.querySelector('p');
+   const select= document.querySelector('select');
+   
+
+btn.addEventListener('click', updateBtn);
+select.addEventListener('change', updateBtn);
+
+function updateBtn() {
+   const choice=select.value;
+  if ((btn.value === 'Subscribe')&&(choice==="Temperature")) {
+    btn.value = 'Unsubscribe';
+    let température=25
+    txt.textContent = température;
+  } else {
+    btn.value = 'Subscribe';
+    txt.textContent = '';
+  }
+}
+ </script>
