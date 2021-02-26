@@ -1,38 +1,68 @@
+<form>
 <body>
    <label for="topic_select">Choose a topic:</label>
 
-   <select name="topic" id="topic_select">
-       <option value="">--Please choose an option--</option>
-       <option value="Temperature">Temperature</option>
-       <option value="Humidite">Humidite</option>
+   <select name="topic" id="topic">
+       <option value="">Choisir un topic</option>
+       <option value="AHT20">AHT20</option>
+       <option value="AHT10">AHT10</option>
        
    </select>
-   <br>
-<form>
-   <br>
-   <input type="button" value="Subsribe">
- </form>
+   <br><br>
+   <select name="capteur" id="capteur">
+     <option value="">Choisir l'option</option>
+     <option value="Temperature">Temperature</option>
+     <option value="Humidite">Humidite</option>
+   </select>
+   <input type="button" value="Subscribe">
+ 
  <p>Souscrire à un topic</p>
 </body>
+</form>
 
  <script>
    var btn = document.querySelector('input');
    var txt = document.querySelector('p');
-   const select= document.querySelector('select');
+   const topic= document.querySelector('#topic'); // Utiliser un # pour récupérer le nom de la liste
+   const capteur= document.querySelector('#capteur')
    
 
 btn.addEventListener('click', updateBtn);
 select.addEventListener('change', updateBtn);
 
 function updateBtn() {
-   const choice=select.value;
-  if ((btn.value === 'Subscribe')&&(choice==="Temperature")) {
+
+   const choixTopic= topic.value
+   const choice= capteur.value;
+
+  if ((btn.value === 'Subscribe')&&(choice==="Temperature")&&(choixTopic==="AHT20")) {
     btn.value = 'Unsubscribe';
     let température=25
     txt.textContent = température;
-  } else {
+  } else if  ((btn.value === 'Subscribe')&&(choice==="Humidite")&&(choixTopic==="AHT20")){
+    btn.value = 'Unsubscribe';
+    let humidité = "40%"
+    txt.textContent = humidité;
+  }
+   else if ((btn.value === 'Subscribe')&&(choice==="Temperature")&&(choixTopic==="AHT10"))
+   {
+    btn.value = 'Unsubscribe';
+    let temperature2 = "30"
+    txt.textContent = temperature2;
+    
+
+   }
+   else if ((btn.value === 'Subscribe')&&(choice==="Humidite")&&(choixTopic==="AHT10"))
+   {
+    btn.value = 'Unsubscribe';
+    let humidité2 = "50%"
+    txt.textContent = humidité2;
+
+
+   }
+   else {
     btn.value = 'Subscribe';
     txt.textContent = '';
-  }
+   }
 }
  </script>
