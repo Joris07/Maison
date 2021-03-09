@@ -32,22 +32,22 @@ select.addEventListener('change', updateBtn);
 
 function updateBtn() {
 
-   const choixTopic= topic.value
+   const choixTopic= topic.value;
    const choice= capteur.value;
 
   if ((btn.value === 'Subscribe')&&(choice==="Temperature")&&(choixTopic==="AHT20")) {
     btn.value = 'Unsubscribe';
-    let température=25
+    let température=25;
     txt.textContent = température;
   } else if  ((btn.value === 'Subscribe')&&(choice==="Humidite")&&(choixTopic==="AHT20")){
     btn.value = 'Unsubscribe';
-    let humidité = "40%"
+    let humidité = "40%";
     txt.textContent = humidité;
   }
    else if ((btn.value === 'Subscribe')&&(choice==="Temperature")&&(choixTopic==="AHT10"))
    {
     btn.value = 'Unsubscribe';
-    let temperature2 = "30"
+    let temperature2 = "30";
     txt.textContent = temperature2;
     
 
@@ -55,7 +55,7 @@ function updateBtn() {
    else if ((btn.value === 'Subscribe')&&(choice==="Humidite")&&(choixTopic==="AHT10"))
    {
     btn.value = 'Unsubscribe';
-    let humidité2 = "50%"
+    let humidité2 = "50%";
     txt.textContent = humidité2;
 
 
