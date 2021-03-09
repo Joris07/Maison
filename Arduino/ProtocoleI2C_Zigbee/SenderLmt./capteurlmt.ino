@@ -1,7 +1,12 @@
 /*
+/*
  * Rui Santos
  * Complete Project Details https://RandomNerdTutorials.com
  */
+ #include <Adafruit_AHTX0.h>
+    #include <SoftwareSerial.h>
+    SoftwareSerial xbee(2, 3);
+     
  
 const int sensorPin = A1; 
 float sensorValue;
@@ -17,6 +22,7 @@ unsigned char count;
 
 void setup() {
   pinMode(sensorPin, INPUT);
+  xbee.begin(9600); 
   Serial.begin(9600);
   pinMode(13, OUTPUT);
   digitalWrite(13, HIGH);
@@ -52,6 +58,7 @@ void loop() {
   count++;
       if (count==2) count=0; 
       Serial.println(final);
+      xbee.println(final);
       delay(1000);
   delay(1000);
 }
