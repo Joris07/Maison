@@ -1,68 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/liste2courses.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">   
+    <title>Maison connectée</title>
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <form>
-<body>
-   <label for="topic_select">Choose a topic:</label>
+  <div style="max-width:500px" class="mx-auto">
+     <h1 style="text-align: center">Maison Connectée</h1>
+     <label for="topic_select"></label>
+     <select name="topic" id="topic" class="form-control">
+         <option value="">Choisir la piéce</option>
+         <option value="AHT20">AHT20</option>
+         <option value="AHT10">AHT10</option>
+     </select>
 
-   <select name="topic" id="topic">
-       <option value="">Choisir un topic</option>
-       <option value="AHT20">AHT20</option>
-       <option value="AHT10">AHT10</option>
-       
-   </select>
-   <br><br>
-   <select name="capteur" id="capteur">
-     <option value="">Choisir l'option</option>
-     <option value="Temperature">Temperature</option>
-     <option value="Humidite">Humidite</option>
-   </select>
-   <input type="button" value="Subscribe">
- 
- <p>Souscrire à un topic</p>
-</body>
-</form>
+     <select name="capteur" id="capteur" class="form-control" style="margin-top:20px;">
+       <option value="">Choisir l'option</option>
+       <option value="Temperature">Temperature</option>
+       <option value="Humidite">Humidite</option>
+     </select>
+     <input type="button" value="Subscribe" style="margin-top:20px;" class="btn btn-primary btn-block">
+     <p></p>
+    </div>
 
- <script>
-   var btn = document.querySelector('input');
-   var txt = document.querySelector('p');
-   const topic= document.querySelector('#topic'); // Utiliser un # pour récupérer le nom de la liste
-   const capteur= document.querySelector('#capteur')
-   
-
-btn.addEventListener('click', updateBtn);
-select.addEventListener('change', updateBtn);
-
-function updateBtn() {
-
-   const choixTopic= topic.value;
-   const choice= capteur.value;
-
-  if ((btn.value === 'Subscribe')&&(choice==="Temperature")&&(choixTopic==="AHT20")) {
-    btn.value = 'Unsubscribe';
-    let température=25;
-    txt.textContent = température;
-  } else if  ((btn.value === 'Subscribe')&&(choice==="Humidite")&&(choixTopic==="AHT20")){
-    btn.value = 'Unsubscribe';
-    let humidité = "40%";
-    txt.textContent = humidité;
-  }
-   else if ((btn.value === 'Subscribe')&&(choice==="Temperature")&&(choixTopic==="AHT10"))
-   {
-    btn.value = 'Unsubscribe';
-    let temperature2 = "30";
-    txt.textContent = temperature2;
+    <div style="max-width:800px" class="mx-auto"><canvas id="graph"></canvas></div>
     
+  </body>
+  </form>
+  
+  <script>
+    var ctx = document.getElementById('graph').getContext('2d')
 
-   }
-   else if ((btn.value === 'Subscribe')&&(choice==="Humidite")&&(choixTopic==="AHT10"))
-   {
-    btn.value = 'Unsubscribe';
-    let humidité2 = "50%";
-    txt.textContent = humidité2;
+    var data = {
+    labels:['label 1', 'label 2', 'label 3', 'label 4'],
+    datasets:[{
+    data:[10,30,20,50]
+    }]
+  }
 
+  var options 
 
-   }
-   else {
-    btn.value = 'Subscribe';
-    txt.textContent = '';
-   }
+  var config = {
+    type:'line',
+    data:data,
+    options: options
 }
- </script>
+
+var graph = new Chart(ctx, config)
+  </script>
+
+   <script>
+  var btn = document.querySelector('input');
+  var txt = document.querySelector('p');
+  const topic= document.querySelector('#topic'); // Utiliser un # pour récupérer le nom de la liste
+  const capteur= document.querySelector('#capteur');
+     
+  
+  btn.addEventListener('click', updateBtn);
+  select.addEventListener('change', updateBtn);
+  
+  function updateBtn() {
+  
+     const choixTopic= topic.value;
+     const choice= capteur.value;
+  
+    if ((btn.value === 'Subscribe')&&(choice==="Temperature")&&(choixTopic==="AHT20")) {
+      btn.value = 'Unsubscribe';
+      let température=25;
+      txt.textContent = température;
+    } else if  ((btn.value === 'Subscribe')&&(choice==="Humidite")&&(choixTopic==="AHT20")){
+      btn.value = 'Unsubscribe';
+      let humidité = "40%";
+      txt.textContent = humidité;
+    }
+     else if ((btn.value === 'Subscribe')&&(choice==="Temperature")&&(choixTopic==="AHT10"))
+     {
+      btn.value = 'Unsubscribe';
+      let temperature2 = "30";
+      txt.textContent = temperature2;
+     }
+     else if ((btn.value === 'Subscribe')&&(choice==="Humidite")&&(choixTopic==="AHT10"))
+     {
+      btn.value = 'Unsubscribe';
+      let humidité2 = "50%";
+      txt.textContent = humidité2;
+     }
+     else if ((btn.value === 'Subscribe')&&(choixTopic==="AHT10"))
+     {
+      btn.value = 'Unsubscribe';
+      let tout2 = "25%";
+      txt.textContent = tout2;
+     }
+     else {
+      btn.value = 'Subscribe';
+      txt.textContent = '';
+     }
+  }
+   </script>
