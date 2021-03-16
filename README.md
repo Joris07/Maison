@@ -21,6 +21,8 @@ Sur ce schéma on peut voir la configuration des 3 modules xbee. Cette configura
 
 ### Capteurs
 
+Le capteur AHT20 utilise le protocole I2C (voir code dans le fichier capteurs pour plus d'information).
+Ensuite le capteur LM335 renvoie une tension lorqu'il est alimenté. 
 
 
 
