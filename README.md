@@ -7,4 +7,4 @@ _Languages_ : Arduino, Html, Javascript, Python.
 
 ## Schéma du projet
 
-![alt tag](url de ton image)
+![alt tag](https://github.com/Joris07/Maison/blob/main/schemaprojet.png)
