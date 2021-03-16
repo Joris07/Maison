@@ -7,3 +7,4 @@ _Languages_ : Arduino, Html, Javascript, Python.
 
 ## Schéma du projet
 
+![alt tag](url de ton image)
