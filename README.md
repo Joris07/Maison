@@ -19,3 +19,7 @@ Comme on peut le voir sur le schéma le capteur AHT20 envoie une trame I2C à la
 
 Sur ce schéma on peut voir la configuration des 3 modules xbee. Cette configuration ce fait grâce au logiciel xctu. Le module xbee connectée possède une adresse de destination de broadcast pour pouvoir répondre à tous les autres modules. Les deux autres modules xbee envoient leurs données à l'addresse du module xbee connectée à la raspberry pi. Ce schéma est modifiable, il est possible d'ajouter d'autres modules. 
 
+
+### Liens utiles
+
+https://pobot.org/Configuration-simple-des-XBee.html
