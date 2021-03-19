@@ -28,7 +28,9 @@ Schéma LM335 :
 
 ![alt tag](https://github.com/Joris07/Maison/blob/main/LM335sch%C3%A9ma.png)
 
+### Fichiers
 
+Les différents scripts et codeS seront présent dans les autres fichiers avec une explication. Par exemple dans le fichier BrokerMqtt on retrouve les script publish et subscribe.  
 
 ### Liens utiles
 
