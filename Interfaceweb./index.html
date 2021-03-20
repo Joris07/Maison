@@ -18,14 +18,14 @@
   <form>
   <div style="max-width:500px" class="mx-auto">
      <h1 style="text-align: center">Maison Connectée</h1>
-     <select name="topic" id="topic" class="form-control">
+     <select name="topic" id="topic" class="form-control"><!--Liste déroulante des collections-->
          <option value="">Choisir la piéce</option>
-         {% for i in coll %}
+         {% for i in coll %}<!--Pour chaque collection créer une ligne-->
          <option value={{i}} name={{i}}>{{i}}</option>
          {% endfor %}                
     </select>
 
-     <select name="capteur" id="capteur" class="form-control" style="margin-top:20px;">
+     <select name="capteur" id="capteur" class="form-control" style="margin-top:20px;"><!--Liste déroulante des données-->
        <option value="">Choisir l'option</option>
        <option value="Temperature" name="Temperature" id="Temperature">Temperature</option>
        <option value="Humidite" name="Humidite">Humidite</option>
@@ -40,80 +40,46 @@
 <div class="card text-center" id="card_temp" style="max-width: 540px;margin:0 auto;">
     <div class="card-body">
       <h5 class="card-title">Temperature</h5>
-      <p class="card-text">{{temperature}}</p>
+      <p class="card-text">{{temperature}}</p><!--Affiche la donnée de température-->
     </div>
 </div>
 <div class="card text-center" id="card_humid" style="max-width: 540px;margin:0 auto;">
     <div class="card-body">
       <h5 class="card-title">Humidite</h5>
-      <p class="card-text">{{humidite}}</p>
+      <p class="card-text">{{humidite}}</p><!--Affiche la donnée d'humidité-->
     </div>
 </div>
     <canvas id="graph"></canvas>
 </div>
   </body>
 
-  <script>
-   let card_temp = document.getElementById("card_temp");
-   let card_humid = document.getElementById("card_humid");
-   var temp = {{temperature}}
-   var humid = {{humidite}}
+    <script>
+    let card_temp = document.getElementById("card_temp");
+    let card_humid = document.getElementById("card_humid");
+    var temp = {{temperature}}//Affecte la valeur de température
+    var humid = {{humidite}}//Affecte la valeur d'humidité
 
-   if (temp == 0) card_temp.style.display = "none";
-   if (humid == 0) card_humid.style.display = "none";
-    
-</script>
+    if (temp == 0) card_temp.style.display = "none";//Si la température est égal à 0, cache la div correspondante
+    if (humid == 0) card_humid.style.display = "none";//Si l'humidité est égal à 0, cache la div correspondante
+    </script>
 
-  <script>
-    var ctx = document.getElementById('graph').getContext('2d')
+    <script>
+    var ctx = document.getElementById('graph').getContext('2d')//Initialise le graphique
 
     var data = {
-    labels:{{date|tojson}},
+    labels:{{date|tojson}},//Appel des valeurs de date venant de la bdd
     datasets:[{
-    data:{{temp|tojson}}
-    }]
-  }
-
-  var options 
-
-  var config = {
-    type:'line',
-    data:data,
-    options: options
-}
-
-var graph = new Chart(ctx, config)
-</script>
-
-<script>
-  var btn = document.querySelector('input');
-  var txt = document.querySelector('p');
-  const topic= document.querySelector('#topic'); // Utiliser un # pour récupérer le nom de la liste
-  const capteur= document.querySelector('#capteur');
-
-  btn.addEventListener('click', updateBtn);
-  select.addEventListener('change', updateBtn);
-  
-  function updateBtn() {
-  
-     const choixTopic= topic.value;
-     const choice= capteur.value;
-  
-    if ((btn.value === 'Subscribe')&&(choice==="Temperature")&&(choixTopic==="AHT20")) {
-      btn.value = 'Unsubscribe';
-      txt.textContent = {{temperature}};
-    } else if  ((btn.value === 'Subscribe')&&(choice==="Humidite")&&(choixTopic==="AHT20")){
-      btn.value = 'Unsubscribe';
-      txt.textContent = {{humidite}};
+    data:{{temp|tojson}}//Appel les données de température / humidité de la bdd
+        }]
     }
-     else if ((btn.value === 'Subscribe')&&(choice==="Temperature")&&(choixTopic==="LMT335"))
-     {
-      btn.value = 'Unsubscribe';
-      txt.textContent = {{lmt335}};
-     }
-     else {
-      btn.value = 'Subscribe';
-      txt.textContent = '';
-     }
-  }
-</script> 
+
+    var options 
+
+    var config = {
+        type:'line',
+        data:data,
+        options: options
+    }
+
+    var graph = new Chart(ctx, config)//Créer le graphique
+    </script>
