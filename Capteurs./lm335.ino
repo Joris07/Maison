@@ -31,7 +31,6 @@ void loop() {
   voltageOut = (sensorValue * 5000) / 1024; //Conversion numérique analogique pour avoir la tension en sortie du capteur
   temperatureK = voltageOut / 10;           // On divise par 10 pour avoir la tension en mv
   temperatureC = temperatureK - 273;        // On convertit la température en kelvin en degré
-  //temperatureF = (temperatureC * 1.8) + 32;
   String final = String(count) + "LMT335;t" + String(temperatureC);
   count++;
       if (count==2) count=0; // Variable pour différencier 2 valeurs sucessives
