@@ -2,7 +2,7 @@ import serial
 import time
 import paho.mqtt.client as mqtt
 
-ser = serial.Serial('/dev/ttyUSB0', 9600) #Déclaration variable qui lit le port série à la vitesse 9600bauds
+ser = serial.Serial('/dev/ttyUSB0', 9600) #Initialise la communication du port série USB0 à la vitesse 9600bauds
 
 broker_address="172.20.78.137" #Déclaration de l'adresse du broker
 client = mqtt.Client("P1") #Instancie un client
