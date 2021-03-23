@@ -28,7 +28,7 @@ def count_dot(chaine):
 #Trie la trame et publie les données sur le broker 
 def trier(nbr, chaine):
     tab=chaine.split(";") #Création d'un tableau en séparant les données par un ;
-    memo = read_file().split(";") #Récupération de la derniére valeur publiée
+    memo = read_file().split(";") #Récupération de la dernière valeur publiée
     if(tab[0]!=memo[0]): #Si la valeur reçu est différente de la derniére publiée alors
         for i in range(1, nbr+1): #Parcours toutes les cases du tableau en commencant à la 2éme
             if(tab[i].find("t")!=-1): #Si la case contient un t alors  
