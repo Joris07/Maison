@@ -1,7 +1,3 @@
-/*
- * Rui Santos
- * Complete Project Details https://RandomNerdTutorials.com
- */
 
 #include <SoftwareSerial.h>
 SoftwareSerial xbee(2, 3);
