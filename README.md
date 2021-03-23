@@ -30,7 +30,7 @@ Schéma LM335 :
 
 ### Fichiers
 
-Les différents scripts et codes seront présent dans les autres fichiers avec une explication. Par exemple dans le fichier Brokermqtt on retrouve les script publish et subscribe.
+Les différents scripts et codes seront présent dans les autres fichiers avec une explication. Par exemple dans le fichier Brokermqtt on retrouve les script publish, subscribe et popup.
 
 ### Liens utiles
 
