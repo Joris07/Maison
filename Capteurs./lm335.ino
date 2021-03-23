@@ -12,7 +12,6 @@ float sensorValue;
 float voltageOut;
 
 float temperatureC;
-float temperatureF;
 float temperatureK;
 
 
