@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">   
+    <title>Maison connectée</title>
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+  <form>
+  <div style="max-width:500px" class="mx-auto">
+     <h1 style="text-align: center">Maison Connectée</h1>
+     <select name="topic" id="topic" class="form-control"><!--Liste déroulante des collections-->
+         <option value="">Choisir la piéce</option>
+         {% for i in coll %}<!--Pour chaque collection créer une ligne-->
+         <option value={{i}} name={{i}}>{{i}}</option>
+         {% endfor %}                
+    </select>
+
+     <select name="capteur" id="capteur" class="form-control" style="margin-top:20px;"><!--Liste déroulante des données-->
+       <option value="">Choisir l'option</option>
+       <option value="Temperature" name="Temperature" id="Temperature">Temperature</option>
+       <option value="Humidite" name="Humidite">Humidite</option>
+       <option value="#" name="#">#</option>
+     </select>
+     <input type="submit" value="Subscribe" style="margin-top:20px" class="btn btn-primary btn-block">
+     <p></p>
+    </div>
+    </form>
+
+<div style="max-width:1250px" class="mx-auto">
+<div class="card text-center" id="card_temp" style="max-width: 540px;margin:0 auto;">
+    <div class="card-body">
+      <h5 class="card-title">Temperature</h5>
+      <p class="card-text">{{temperature}}</p><!--Affiche la donnée de température-->
+    </div>
+</div>
+<div class="card text-center" id="card_humid" style="max-width: 540px;margin:0 auto;">
+    <div class="card-body">
+      <h5 class="card-title">Humidite</h5>
+      <p class="card-text">{{humidite}}</p><!--Affiche la donnée d'humidité-->
+    </div>
+</div>
+    <canvas id="graph"></canvas>
+</div>
+  </body>
+
+    <script>
+    let card_temp = document.getElementById("card_temp");
+    let card_humid = document.getElementById("card_humid");
+    var temp = {{temperature}}//Affecte la valeur de température
+    var humid = {{humidite}}//Affecte la valeur d'humidité
+
+    if (temp == 0) card_temp.style.display = "none";//Si la température est égal à 0, cache la div correspondante
+    if (humid == 0) card_humid.style.display = "none";//Si l'humidité est égal à 0, cache la div correspondante
+    </script>
+
+    <script>
+    var ctx = document.getElementById('graph').getContext('2d')//Initialise le graphique
+
+    var data = {
+    labels:{{date|tojson}},//Appel des valeurs de date venant de la bdd
+    datasets:[{
+    data:{{temp|tojson}}//Appel les données de température / humidité de la bdd
+        }]
+    }
+
+    var options 
+
+    var config = {
+        type:'line',
+        data:data,
+        options: options
+    }
+
+    var graph = new Chart(ctx, config)//Créer le graphique
+    </script>
