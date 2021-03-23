@@ -16,7 +16,7 @@ def receiver():
 
 #Ecrit la trame xbee dans le fichier txt
 def write_file(chaine):
-    write = open("donnees.txt", "a") #Ouvre le fichier "donnees.txt" pour écrire dedans ("a")
+    write = open("donnees.txt", "a") #Ouvre le fichier "donnees.txt" 
     write.write(chaine[1:] + "\n") #Ecrit dans le fichier + saut de ligne
     write.close() #Ferme le fichier
 
