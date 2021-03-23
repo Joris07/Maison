@@ -29,7 +29,7 @@ broker_address="172.20.78.137"
 
 print("creating new instance")
 client = mqtt.Client() #Créer une nouvelle instance
-client.on_message=on_message
+client.on_message=on_message #Interprete le message en appelant la fonction on_message
 
 print("connecting to broker")
 client.connect(broker_address) #Connexion au broker
