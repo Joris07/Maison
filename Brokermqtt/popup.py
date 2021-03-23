@@ -6,7 +6,7 @@ window = Tk()
 window.geometry('1000x100')
 window.withdraw()
 
-#Load both the images
+broker_address="172.20.78.137"
 
 label = Label(text="0", font="Arial 30", width=50, fg='red')#Initialise le label 
 label.pack()
@@ -24,8 +24,6 @@ def on_message(client, userdata, message):
         label.update()#Met à jour le label
     else:
         window.withdraw()#Cache la fenêtre
-
-broker_address="172.20.78.137"
 
 print("creating new instance")
 client = mqtt.Client() #Créer une nouvelle instance
