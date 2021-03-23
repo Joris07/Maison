@@ -30,7 +30,7 @@ def trier(nbr, chaine):
     tab=chaine.split(";") #Création d'un tableau en séparant les données par un ;
     memo = read_file().split(";") #Récupération de la dernière valeur publiée
     if(tab[0]!=memo[0]): #Si la valeur reçu est différente de la derniére publiée alors
-        for i in range(1, nbr+1): #Parcours toutes les cases du tableau en commencant à la 2éme
+        for i in range(1, nbr+1): #Parcourt toutes les cases du tableau en commencant à la 2éme
             if(tab[i].find("t")!=-1): #Si la case contient un t alors  
                 client.publish(tab[0][1:]+"/temperature",tab[i][1:]) #Publie la temperature du topic sur le broker 
             elif(tab[i].find("h")!=-1): #Si la case contient un h alors
