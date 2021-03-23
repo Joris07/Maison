@@ -33,3 +33,7 @@ db.drop("collection")
 ###Supprimer des données d'une collection 
 
 db.collection.remove({a:2})
+
+###Pour plus de commande suivre ce lien 
+
+https://docs.mongodb.com/manual/reference/method/js-collection/
