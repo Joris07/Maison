@@ -11,7 +11,7 @@ _Solutions techniques_ : Protocole Zigbee, Protocole MQTT, Serveur Flask, Utilis
 _Languages_ : Arduino, Html, Javascript, Python, CSS.
 
 ## Présentation du projet
-![alt tag](https://github.com/Joris07/Maison/blob/main/schema.png)
+![alt tag](https://github.com/Joris07/Maison/blob/main/schema.PNG)
 Comme on peut le voir sur le schéma, le capteur AHT20 envoie une trame I2C à la carte arduino et le capteur lm335 envoie une valeur analogique (la tension) qui sera convertie en valeur numérique sur la carte arduino pour pouvoir la traiter. Ensuite 2 cartes arduino communiquent grâce à des modules xbee avec la raspberry pi. La raspberry pi traite les valeurs des différents capteurs puis les envoient sur le broker mqtt grâce au script publish.py. Le serveur mqtt permet d'avoir différents topics auxquels on peut souscrire. Ensuite un script subscribe.py permet de souscrire à tous les topics et envoie toutes les données reçues sur la base de données. On utilise MongoDB pour la base de données. Pour finir l'interface web interagit avec la base de données pour avoir la dernière valeur enregistrée dans le base de données et une courbe en fonction du temps.
 
 ### Modules Xbee
